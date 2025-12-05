@@ -11,3 +11,9 @@ Conventional Auditory Attention Decoding (AAD) systems rely on the temporal corr
 <p align="center">
   <img src="figures/model_overview.png" width="750">
 </p>
+
+The model operates through three training stages followed by inference. 
+- Step 1 - Speaker Feature Clustering: Speaker embeddings from a large external corpus are clustered to obtain time-invariant speaker centroids. 
+- Step 2 - Neural Decoder Training: An LSTM-based model is trained to classify the attended speaker’s cluster label directly from iEEG signals. 
+- Step 3 - Speech Extractor Training: A speech extraction model is trained independently on speech mixtures to isolate the target voice conditioned on its cluster centroid. 
+- Inference: During testing, the brain predictor infers the attended speaker’s cluster label from neural data, and the corresponding centroid guides the extractor to recover the attended speech from the acoustic mixture.
